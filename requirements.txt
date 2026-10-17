@@ -1,2 +1,5 @@
 httpx
 matplotlib
+fastapi
+uvicorn
+prometheus-client
