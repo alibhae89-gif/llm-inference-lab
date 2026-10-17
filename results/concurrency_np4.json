@@ -1,0 +1,29 @@
+[
+  {
+    "label": "np4",
+    "users": 1,
+    "requests": 3,
+    "ttft_median_ms": 443,
+    "ttft_worst_ms": 472,
+    "per_user_tps": 21.2,
+    "total_tps": 18.3
+  },
+  {
+    "label": "np4",
+    "users": 2,
+    "requests": 6,
+    "ttft_median_ms": 882,
+    "ttft_worst_ms": 917,
+    "per_user_tps": 17.6,
+    "total_tps": 29.1
+  },
+  {
+    "label": "np4",
+    "users": 4,
+    "requests": 12,
+    "ttft_median_ms": 1337,
+    "ttft_worst_ms": 1734,
+    "per_user_tps": 12.7,
+    "total_tps": 40.1
+  }
+]
