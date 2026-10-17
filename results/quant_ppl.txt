@@ -1,0 +1,5 @@
+fp16: 2.53.390.081 I Final estimate: PPL = 16.7308 +/- 0.69219
+q8_0: 1.55.359.449 I Final estimate: PPL = 16.8304 +/- 0.69827
+q5_k_m: 3.15.052.114 I Final estimate: PPL = 17.1156 +/- 0.71253
+q4_k_m: 2.09.385.362 I Final estimate: PPL = 17.3916 +/- 0.72287
+q2_k: 1.24.597.514 I Final estimate: PPL = 19.1748 +/- 0.81172
