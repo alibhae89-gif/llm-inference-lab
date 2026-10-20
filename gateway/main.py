@@ -1,12 +1,18 @@
 import json
 import os
 import time
-from contextlib import asynccontextmanager
+from contextlib import asynccontextmanager, suppress
 
 import httpx
 from fastapi import FastAPI, Request
 from fastapi.responses import JSONResponse, Response, StreamingResponse
-from prometheus_client import CONTENT_TYPE_LATEST, Counter, Gauge, Histogram, generate_latest
+from prometheus_client import (
+    CONTENT_TYPE_LATEST,
+    Counter,
+    Gauge,
+    Histogram,
+    generate_latest,
+)
 
 UPSTREAM = os.getenv("UPSTREAM_URL", "http://127.0.0.1:8090")
 MAX_INFLIGHT = int(os.getenv("MAX_INFLIGHT", "8"))
@@ -82,10 +88,8 @@ async def chat(request: Request):
         try:
             r = await app.state.client.post("/v1/chat/completions", json=body)
             REQUESTS.labels(status=str(r.status_code)).inc()
-            try:
+            with suppress(ValueError, AttributeError):
                 TOKENS.inc(r.json().get("usage", {}).get("completion_tokens", 0))
-            except (ValueError, AttributeError):
-                pass
             return Response(
                 content=r.content,
                 status_code=r.status_code,

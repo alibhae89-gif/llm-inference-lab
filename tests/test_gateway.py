@@ -68,11 +68,10 @@ def test_chat_passthrough_and_inflight_returns_to_zero():
 
 
 def test_chat_streaming_relays_chunks():
-    with gateway(upstream_ok) as client:
-        with client.stream(
-            "POST", "/v1/chat/completions", json={**CHAT, "stream": True}
-        ) as r:
-            text = "".join(r.iter_text())
+    with gateway(upstream_ok) as client, client.stream(
+        "POST", "/v1/chat/completions", json={**CHAT, "stream": True}
+    ) as r:
+        text = "".join(r.iter_text())
     assert r.status_code == 200
     assert '"content":"Hi"' in text
     assert "data: [DONE]" in text
